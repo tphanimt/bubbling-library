@@ -9,7 +9,13 @@
 * Codebase on GitHub: 
 * http://github.com/caridy/bubbling-library/tree/master
 
-*** version 2.1 *** (Tested over YUI 2.7.0)
+*** version 2.2 *** (Tested over YUI 2.7.0)
+
+  * Wizard: adding a new classname to control which elements should be transformed
+    into YUI elements, and which elements should be preserved. 
+    classname="yui-cms-preserve" 
+
+*** version 2.1 *** (Tested over YUI 2.7.0) (github tag: v2-1)
 
 This release synchronizes the SourceForge version with Bubbling Library -- version number 2.1.
 Please see the following article for information on this specific version increment at:
