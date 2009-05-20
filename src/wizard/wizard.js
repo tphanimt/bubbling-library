@@ -3,7 +3,7 @@ Copyright (c) 2008, Caridy Patino. All rights reserved.
 Portions Copyright (c) 2008, Yahoo!, Inc. All rights reserved.
 Code licensed under the BSD License:
 http://www.bubbling-library.com/eng/licence
-version: 2.1
+version: 2.2
 */
 (function() {
   var $L = YAHOO.lang,
@@ -97,14 +97,14 @@ version: 2.1
 		}
 		function check (area) {
 			var items = [], sName, bt, label, oForm, c;
-			if ($L.isObject(area) && $L.isObject(area.element)) {
+			if ($L.isObject(area) && $L.isObject(area.element) && $L.isObject(YAHOO.widget.Button)) {
 			    if (!area.overheat) {
 				  // analysing the content of the area...
 			  	  // searching for buttons elements
 				  items = _getFormElements(area.element, 'button');
 				  // Loop through each result
 				  for(var k = 0, len = items.length; k < len; k++) {
-					if (!$D.getAncestorByClassName(items[k], 'yui-button')) {
+					if (!$D.getAncestorByClassName(items[k], 'yui-button') && !$D.getAncestorByClassName(items[k], 'yui-cms-preserve')) {
 	                    // YUI buttons are incompletes, that's why I introduce a new level with class="i" to include icons in radios and checkbox
 	                    // Create a Button using an existing <input> element as a data source
 						bt = new YAHOO.widget.Button(items[k], {className: items[k].className});
@@ -116,7 +116,7 @@ version: 2.1
 				  for(var k = 0, len = items.length; k < len; k++) {
 					bt = items[k].getAttribute('type').toLowerCase();
 	                label = items[k].getAttribute('value');
-					if ($L.isObject(YAHOO.widget.Button) && ((bt == 'submit') || (bt == 'reset') || (bt == 'button'))) {
+					if (!$D.getAncestorByClassName(items[k], 'yui-cms-preserve') && ((bt == 'submit') || (bt == 'reset') || (bt == 'button'))) {
 	                    // YUI buttons are incompletes, that's why I introduce a new level with class="i" to include icons in radios and checkbox
 		                label = '<div class="i">'+label+'</div>';
 	                    // Create a Button using an existing <input> element as a data source
@@ -495,4 +495,4 @@ version: 2.1
 
 })();
 YAHOO.util.WizardManager = YAHOO.plugin.WizardManager; // deprecated: backward compatibility issue...
-YAHOO.register("wizard", YAHOO.plugin.WizardManager, {version: "2.1", build: "242"});
+YAHOO.register("wizard", YAHOO.plugin.WizardManager, {version: "2.2", build: "244"});
