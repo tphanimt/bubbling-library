@@ -389,6 +389,26 @@ YAHOO.namespace("plugin","behavior");
         return first;
     };
     obj.on = obj.subscribe; // defining an alias...
+
+	/**
+	* * Unsubscribing an behavior from certain behaviors layer...
+	* @public
+	* @param {string} layer  Behavior layer GUID
+	* @param {object} bh     The function that represent the behavior
+	* @return boolean if it is the first listener
+	*/
+    obj.unsubscribe = function (layer, bh, scope) {
+        var first = this.addLayer(layer); // return true if it's the first listener
+        if (layer) {
+			if ($L.isObject(scope)) {
+			  this.bubble[layer].unsubscribe(bh, scope, true);  // correcting the default scope
+			} else {
+			  this.bubble[layer].unsubscribe(bh);  // use the default scope
+			}
+        }
+        return first;
+    };
+
 	/**
 	* * Broadcasting the message in the corresponding behavior layer...
 	* @public
